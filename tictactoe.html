@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Lobster|Shadows+Into+Light" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <title>Tic Tac Toe</title>
+</head>
+<body>
+
+  <embed id="song" src="song.mp3" autostart="true" loop="true" rel="" 
+width="2" height="0">
+</embed>
+<img id="musicButton" src="images/music.png">
+<h1>Monkeys and Unicorns</h1>
+<div class="container">
+  <div id="winner"></div>
+<div id="left" class="box">
+  <h2 id="scoreX">Score: 0</h2>
+  <img src="images/banana-win.gif">
+</div>
+  <table>
+    <tr id='row1'>
+      <td id='a1'></th>
+      <td id='a2'></th>
+      <td id='a3'></th>
+    </tr>
+    <tr id='row2'>
+      <td id ='b1'></td>
+      <td id ='b2'></td>
+      <td id='b3'></td>
+    </tr>
+    <tr id='row3'>
+      <td id='c1'></td>
+      <td id='c2'></td>
+      <td id='c3'></td>
+    </tr>
+  </table>
+<div id="right" class="box">
+  <h2 id="scoreY">Score: 0</h2>
+  <img src="images/unicorn-win.gif">
+</div>
+<button class="reset">Play Again</button>
+<button class="resetScore">Reset Scores</button>
+
+</div>
+  <script  src="js/jquery-1.12.4.js"></script>
+  <script type="text/javascript" src="js/tictactoe.js"></script>
+</body>
+</html>
