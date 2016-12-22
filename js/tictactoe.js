@@ -1,19 +1,12 @@
 $(document).ready(function(){
   var inputX = [];
   var inputY = [];
-  var player = 2;
+  var player = 0;
   var scoreX =0;
   var scoreY =0;
-  var playerName='X';
+  var counter = 0;
   var winningPlayer='';
-
-  var table = $('table').html();
   var interval;
-
-  var makeTable = function (){
-    $('table').html(table)
-  };
-
 
   //////////////////////////////////////////////////////////////////////
   //GAME LOGIC
@@ -45,10 +38,10 @@ $(document).ready(function(){
 
   //determine winner and add 1 to their score
   var winner = function(){
-      if (playerName ==='X'){
+      if (player === 0){
         scoreY += 1;
         winningPlayer = "unicorn";
-      }else if (playerName ==='Y'){
+      }else if (player === -1){
         scoreX +=1
         winningPlayer = "monkey";
       }
@@ -82,11 +75,10 @@ $(document).ready(function(){
     }
     inputX = [];
     inputY = [];
-    player = 2;
-    whichPlayer();
+    player = 0;
     winningPlayer='';
     $('#winner').html('')
-
+    counter=0;
     highlight();
   }
 
@@ -112,25 +104,16 @@ $(document).ready(function(){
     }
   }
 
-  //which player's turn
-  var whichPlayer = function (){
-  if (player%2 === 0){
-    playerName = 'X';
-  }else if (player%2 !== 0){
-    playerName = 'Y';
-  }
-  }
-
-  //unhighlight player/s
-  var highlightAll = function (){
+  //unhighlight player/s (removes the underline from score)
+  var unhighlight = function (){
     $('#scoreX').css({'font-size':'3em', 'text-decoration':'none'});
     $('#scoreY').css({'font-size':'3em', 'text-decoration':'none'});
   }
 
-  //highlight player
+  //highlight player (apply underline to score)
   var highlight = function (){
-    highlightAll();
-    if (playerName === 'X'){
+    unhighlight();
+    if (player === 0){
     $('#scoreX').css({'font-size':'3em', 'text-decoration':'underline'});
   } else {
     $('#scoreY').css({'font-size':'3em', 'text-decoration':'underline'});
@@ -147,29 +130,27 @@ $(document).ready(function(){
     }
       //If it hasn't been clicked, input either X or Y marker
     $(this).addClass('clicked');
-    if (playerName === 'X'){
+    if (player === 0){
       inputX.push($(this).attr('id'));
-      $(this).html('<img id="banana" src="images/banana.png">')
-    } else if (playerName === 'Y'){
+      $(this).html('<img id="banana" src="images/banana.png">');
+      player -=1;
+    } else if (player === -1){
       inputY.push($(this).attr('id'));
-      $(this).html('<img id="unicorn" src="images/unicorn.jpeg">')
+      $(this).html('<img id="unicorn" src="images/unicorn.jpeg">');
+      player +=1;
     }
-    //add one to 'player' to signify which player's turn it is
-    player +=1;
+    //add one to counter (number of moves)
+    counter+=1;
 
-    //highlight the player
-    whichPlayer();
+    //highlight the player (underline)
     highlight();
 
-    //check to see if anyone has won yet
-    winnings(inputX);
-    winnings(inputY);
-
-    //check to see who won, update score and print it to the screen, freeze the game
+    //check to see who won, update score and print it to the screen,
+    //make the winner blink, freeze the game
     if (winnings(inputX) || winnings(inputY)){
       winner();
       $('#winner').html( winningPlayer + ' wins!!!!');
-      highlightAll();
+      unhighlight();
       if (winningPlayer === 'monkey'){
         interval = setInterval(function(){
           $('#left img').fadeOut(500);
@@ -185,13 +166,11 @@ $(document).ready(function(){
       blockClicking();
     }
     score();
-    localStorage["tscoreX"] = scoreX;
-    localStorage["tscoreY"] = scoreY;
 
     //if there is a tie
-    if(player === 11 && winningPlayer === ''){
-      $('#winner').html('MONKEY and UNICORN have tied!!!')
-      highlightAll();
+    if(counter === 9 && winningPlayer === ''){
+      $('#winner').html('Noone wins')
+      unhighlight();
     }
 
   };

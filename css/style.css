@@ -7,13 +7,14 @@ h1 {
   font-family: 'Lobster', cursive;
   font-size: 5em;
   text-align: center;
-  background-color: pink;
+  background-color: #ff6ea8;
   color:white;
+  padding-bottom: 10px;
 }
 
 h2 {
   font-family: 'Lobster', cursive;
-  font-size: 3em;
+  font-size: 2em;
   text-align: center;
   margin-top: -5px;
   margin-bottom: -5px;
@@ -27,23 +28,30 @@ h2 {
   background-color: white;
   border: 5px solid #ffcd05;
   border-radius: 20px;
-  padding-bottom: 20px;
 }
 
 .reset, .resetScore {
   margin: 0px auto;
   margin-top: 10px;
-  margin-left: 30px;
+  margin-left: 10px;
   padding: 10px;
-  width: 100px;
+  width: 150px;
+  font-size: 1.3em;
+  font-family: 'Lobster', cursive;
+  background-color: #ff6ea8;
+  border: none;
+  color: white;
+  letter-spacing: 2px;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 3px 3px #aaa;
 }
 
 .reset {
-  margin-left: 380px;
+  margin-left: 335px;
 }
 
 button:hover {
-  font-weight: bold;
+  background-color: #db61a4;
 }
 
 .box {
@@ -88,8 +96,9 @@ td {
   text-align: center;
   font-size: 2.5em;
   color:#db61a4;
-  height:100px;
-  padding-top: 20px;
+  height:90px;
+  margin-top: 15px;
+  margin-bottom: -15px;
 }
 
 /*highlights the row that won*/
