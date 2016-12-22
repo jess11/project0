@@ -29,4 +29,5 @@ Play noughts and crosses but as a monkey and a unicorn!! ^_^ ~~
 ## CONTACT
 
 Jess: kryx11@gmail.com
-[Link to Game](https://jess11.github.io//project0/tictactoe.html)
+
+[Link to Game](https://jess11.github.io/project0/)

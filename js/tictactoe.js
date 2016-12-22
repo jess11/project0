@@ -7,7 +7,14 @@ $(document).ready(function(){
   var playerName='X';
   var winningPlayer='';
 
+  var table = $('table').html();
   var interval;
+
+  var makeTable = function (){
+    $('table').html(table)
+  };
+
+
   //////////////////////////////////////////////////////////////////////
   //GAME LOGIC
   //possible winning combinations
@@ -115,21 +122,20 @@ $(document).ready(function(){
   }
 
   //unhighlight player/s
-  var highlightAll = function (colour){
-    $('#scoreX').css('color',colour);
-    $('#scoreY').css('color',colour);
+  var highlightAll = function (){
+    $('#scoreX').css({'font-size':'3em', 'text-decoration':'none'});
+    $('#scoreY').css({'font-size':'3em', 'text-decoration':'none'});
   }
 
   //highlight player
   var highlight = function (){
-    highlightAll('black');
+    highlightAll();
     if (playerName === 'X'){
-    $('#scoreX').css('color','orange');
+    $('#scoreX').css({'font-size':'3em', 'text-decoration':'underline'});
   } else {
-    $('#scoreY').css('color','orange');
+    $('#scoreY').css({'font-size':'3em', 'text-decoration':'underline'});
   }
   }
-
 
 
   //START of tictactoe function -------------------------------------//
@@ -162,17 +168,15 @@ $(document).ready(function(){
     //check to see who won, update score and print it to the screen, freeze the game
     if (winnings(inputX) || winnings(inputY)){
       winner();
-      $('#winner').html( winningPlayer + ' is the winner!!!!');
-      highlightAll('black');
+      $('#winner').html( winningPlayer + ' wins!!!!');
+      highlightAll();
       if (winningPlayer === 'monkey'){
-        $('#scoreX').css('color','pink');
         interval = setInterval(function(){
           $('#left img').fadeOut(500);
           $('#left img').fadeIn(500);
         }, 1000);
       }
       if (winningPlayer === 'unicorn'){
-        $('#scoreY').css('color','pink');
         interval = setInterval(function(){
           $('#right img').fadeOut(500);
           $('#right img').fadeIn(500);
@@ -181,11 +185,13 @@ $(document).ready(function(){
       blockClicking();
     }
     score();
+    localStorage["tscoreX"] = scoreX;
+    localStorage["tscoreY"] = scoreY;
 
     //if there is a tie
     if(player === 11 && winningPlayer === ''){
       $('#winner').html('MONKEY and UNICORN have tied!!!')
-      highlightAll('black');
+      highlightAll();
     }
 
   };
@@ -198,4 +204,5 @@ $(document).ready(function(){
   $('td').on('click', tictactoe)
   $('.reset').on('click',reset)
   $('.resetScore').on('click',resetScore)
+
 })

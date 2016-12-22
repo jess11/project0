@@ -199,3 +199,33 @@ $(document).ready(function(){
   $('.reset').on('click',reset)
   $('.resetScore').on('click',resetScore)
 })
+
+
+
+// Local storage //
+
+
+function saveGameState() {
+
+     localStorage["tscoreX"] = scoreX;
+      localStorage["tscoreY"] = scoreY;
+
+    localStorage["tplayerName"] = playerName;
+    localStorage["twinningPlayer"] = winningPlayer;
+    localStorage["tplayer"] = player;
+
+}
+
+
+
+
+function resumeGame() {
+    scoreX = parseInt(localStorage["tscoreX"]);
+    scoreY = parseInt(localStorage["tscoreY"]);
+
+    playerName = (localStorage["tplayerName"]);
+    winningPlayer = (localStorage["twinningPlayer"]);
+    player = parseInt(localStorage["tplayer"]);
+
+
+}
